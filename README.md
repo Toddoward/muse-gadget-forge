@@ -47,7 +47,8 @@ Nothing to install on your side beyond the gateway: Muse sets up its own toolcha
 
 Tested on the workbench in its default `isolated` mode: ESP-IDF v6.0.1 installed through the proxy,
 a real board identified over USB, and the Gadget SDK firmware built for the ESP32-S3 DevKitC-1
-([`tests/smoke.py`](tests/smoke.py)).
+([`tests/smoke.py`](tests/smoke.py)). From an empty workbench: about 3 minutes to set up ESP-IDF, under a
+minute per build after that.
 
 ## Credits
 

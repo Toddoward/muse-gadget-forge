@@ -42,7 +42,8 @@ Forge는 Muse가 이 둘을 스스로 엮게 합니다. 작업대에 ESP-IDF를 
 - 내 토큰으로 만든 가젯은 개인적·비상업적 용도입니다. [Gadget SDK 토큰 약관](https://gadgets.muse.ai/sdk-terms)을 확인하세요.
 
 작업대의 기본 모드(`isolated`)에서 검증했습니다. 프록시를 거쳐 ESP-IDF v6.0.1을 설치하고, USB로 실제 보드를 식별하고,
-ESP32-S3 DevKitC-1용 Gadget SDK 펌웨어를 빌드했습니다([`tests/smoke.py`](tests/smoke.py)).
+ESP32-S3 DevKitC-1용 Gadget SDK 펌웨어를 빌드했습니다([`tests/smoke.py`](tests/smoke.py)). 빈 작업대에서 ESP-IDF 준비에
+약 3분, 그 뒤로는 빌드 한 번에 1분이 채 안 걸립니다.
 
 ## 만든 것들에 대한 감사
 
