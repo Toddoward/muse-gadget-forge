@@ -18,9 +18,9 @@ ESP32 하나면 됩니다. 그런데 지금까지 그 가젯을 만드는 건 �
 Forge는 그 틈을 메웁니다. 그렇다고 대단한 게 들어 있지는 않습니다. Muse에게 건네는 지침 한 장, 스킬일 뿐입니다.
 나머지는 이미 다 있으니까요.
 
-- **[Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway)**가 내 컴퓨터 위에 Muse의 작업대를 놓아 줍니다.
+- [**Muse Local Gateway**](https://github.com/Toddoward/muse-local-gateway)가 내 컴퓨터 위에 Muse의 작업대를 놓아 줍니다.
   USB에 꽂힌 보드 바로 옆의 격리된 셸입니다.
-- **[Muse Gadget SDK](https://github.com/facebookincubator/muse-gadget-sdk)**에는 펌웨어와 보드별 설정, 그리고 에이전트가
+- [**Muse Gadget SDK**](https://github.com/facebookincubator/muse-gadget-sdk)에는 펌웨어와 보드별 설정, 그리고 에이전트가
   빌드할 수 있도록 쓰인 `AGENTS.md`가 있습니다.
 
 Forge는 Muse가 이 둘을 스스로 엮게 합니다. 작업대에 ESP-IDF를 깔고, 내 보드에 맞는 설정을 고르고, 빌드하고, 굽고,
@@ -51,7 +51,7 @@ ESP32-S3 DevKitC-1용 Gadget SDK 펌웨어를 빌드했습니다([`tests/smoke.p
 
 - **[Muse Gadgets](https://github.com/facebookincubator/muse-gadget-sdk)** (Meta) — SDK와 펌웨어, 그리고 이 모든 걸 가능하게 한
   에이전트용 `AGENTS.md`. Forge는 Muse에게 그곳을 가리켜 줄 뿐입니다.
-- **[ESP-IDF](https://github.com/espressif/esp-idf)**와 **esptool** (Espressif)
+- [**ESP-IDF**](https://github.com/espressif/esp-idf)와 **esptool** (Espressif)
 
 Muse Gadget Forge는 **비공식 커뮤니티 프로젝트**이며, Meta가 만들거나 보증하거나 지원하지 않습니다.
 "Muse"는 Meta의 이름이고, 무엇과 함께 동작하는지 밝히기 위해서만 씁니다.
