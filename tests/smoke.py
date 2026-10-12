@@ -61,9 +61,11 @@ if ports:
     v = run(f"esptool.py --port {ports[0]} chip_id")
     check(f"chip_id on {ports[0]}", "Chip is" in v.get("stdout", "") or "Chip type" in v.get("stdout", ""), v)
     print("     " + next((l for l in v.get("stdout", "").splitlines() if "Chip" in l), ""))
-v = run("mkdir -p /build/hello && cp -r $IDF_PATH/examples/get-started/hello_world /work/hello_world"
-        " && idf.py -C /work/hello_world -B /build/hello set-target esp32s3 >/dev/null && idf.py -C /work/hello_world -B /build/hello build | tail -3", 900)
-check("hello_world builds for esp32s3", v.get("exit_code") == 0 and "build" in v.get("stdout", "").lower(), v)
+# Exit code of idf.py itself, not of a pipe (the bench runs plain sh: no pipefail).
+v = run("rm -rf /work/hello_world /build/hello && cp -r $IDF_PATH/examples/get-started/hello_world /work/hello_world"
+        " && idf.py -C /work/hello_world -B /build/hello set-target esp32s3 > /tmp/b.log 2>&1"
+        " && idf.py -C /work/hello_world -B /build/hello build >> /tmp/b.log 2>&1; rc=$?; tail -4 /tmp/b.log; exit $rc", 1800)
+check("hello_world builds for esp32s3", v.get("exit_code") == 0 and "Project build complete" in v.get("stdout", ""), v)
 
 if "--keep" not in sys.argv:
     dc("down", "-v")
