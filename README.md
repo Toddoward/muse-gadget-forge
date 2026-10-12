@@ -1,71 +1,64 @@
-[![English](https://img.shields.io/badge/lang-English-111111?style=flat-square)](README.md)
+[![English](https://img.shields.io/badge/lang-English-16161D?style=flat-square)](README.md)
 [![한국어](https://img.shields.io/badge/lang-%ED%95%9C%EA%B5%AD%EC%96%B4-lightgrey?style=flat-square)](README.kr.md)
 
 # Muse Gadget Forge
 
-**Gadgets give Muse ears and a voice. Local Gateway gives it hands and feet.<br>
-Forge gives it a workbench — where Muse builds the next gadget itself.**
+**A skill that lets Muse build its own gadget.**
 
-[![License](https://img.shields.io/badge/license-Apache--2.0-111111?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.1.0-111111?style=flat-square)](CHANGELOG.md)
-[![Community skill](https://img.shields.io/badge/Muse-community%20skill-lightgrey?style=flat-square)](#faq)
+[![License](https://img.shields.io/badge/license-Apache--2.0-16161D?style=flat-square)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.1.0-16161D?style=flat-square)](CHANGELOG.md)
+[![Unofficial](https://img.shields.io/badge/Muse-community%20skill-0069D9?style=flat-square)](#credits)
 
-Plug an ESP32 into your computer and ask Muse for a gadget. Muse writes the firmware, builds it with
-ESP-IDF, flashes the board on your desk, reads its serial log, and fixes what broke — in a loop,
-without you touching a terminal. Then you pair it in the Muse app, and the board talks to Muse on
-its own over Wi-Fi.
+[Muse Gadgets](https://gadgets.muse.ai) give Muse ears and a voice in your room: an ESP32 with a
+screen, a microphone, a speaker, a button. But until now someone else had to build them. You wrote
+and flashed the firmware yourself — or handed the job to a coding agent on your laptop — and Muse
+waited at the other end of the pairing screen.
 
-Forge is an add-on for [**Muse Local Gateway**](https://github.com/Toddoward/muse-local-gateway):
-it swaps the gateway's sandboxed shell for one with ESP-IDF v6.0.1 inside. Same locks, same
-network mode, same single shared folder — plus your USB board.
+Forge closes that gap. It is only a skill, a page of instructions for Muse, because everything else
+already exists:
 
-> Unofficial community project. Not affiliated with or endorsed by the makers of Muse.
+- **[Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway)** gives Muse a workbench on
+  your computer — a sandboxed shell beside the board in your USB port.
+- **The [Muse Gadget SDK](https://github.com/facebookincubator/muse-gadget-sdk)** has the firmware, the
+  board profiles, and an `AGENTS.md` written precisely so that agents can build it.
 
-## Install
+Forge teaches Muse to put the two together: set up ESP-IDF on its workbench, pick the right profile
+for your board, build, flash, read the boot log, fix what broke — and then hand you the one step
+that has to be yours, pairing it in the Muse app.
 
-1. Set up [Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway) and answer **y** to USB.
-2. Put this repo next to it and run the installer (pulls ESP-IDF, about 5 GB the first time):
+## Use it
 
-```bash
-git clone https://github.com/Toddoward/muse-gadget-forge
-./muse-gadget-forge/install.sh ./muse-local-gateway          # Linux
-```
+1. Set up [Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway) and say **yes** to USB.
+2. Plug in your board (an ESP32-S3 is a good start) and tell Muse:
+   > *Install the muse_gadget_forge skill from https://github.com/Toddoward/muse-gadget-forge, then
+   > build me a gadget for the board on my desk.*
+3. Have your [SDK token](https://gadgets.muse.ai) ready — Muse will ask for it — and confirm when it
+   asks to flash. The first build downloads ESP-IDF onto the workbench, so give it some time.
 
-```powershell
-git clone https://github.com/Toddoward/muse-gadget-forge
-.\muse-gadget-forge\install.ps1 .\muse-local-gateway         # Windows
-```
-
-3. Tell Muse: *"Install the muse_gadget_forge skill from https://github.com/Toddoward/muse-gadget-forge."*
-
-Remove it with `--remove` (`-Remove` on Windows); the plain shell comes back.
-
-## Boards
-
-| Board | Shows up as | Build | Flash |
-|---|---|---|---|
-| ESP32-S3, C3, C6 (native USB) | `/dev/ttyACM0` | ✅ ESP-IDF | ✅ |
-| ESP32 DevKit (CP210x / CH340) | `/dev/ttyUSB0` | ✅ ESP-IDF | ✅ |
-| ESP8266 (NodeMCU, D1 mini) | `/dev/ttyUSB0` | ❌ not in ESP-IDF | ✅ prebuilt images |
-
-Linux and Windows (via usbipd-win). Not macOS — Docker Desktop can't pass USB through.
+Nothing to install on your side beyond the gateway: Muse sets up its own toolchain.
 
 ## What Muse will and won't do
 
-- It asks before flashing — that replaces what the board was running.
-- It never erases flash without asking — that wipes Wi-Fi settings and gadget pairing.
-- Your Gadget SDK token comes from you, at gadgets.muse.ai, after you read the SDK terms.
-- Pairing happens on your phone, in the Muse app. Your computer is the workbench, not a relay:
-  once paired, the gadget needs nothing from it.
+- It **asks before flashing**, and never erases a board without asking (that wipes Wi-Fi and pairing).
+- Your token stays out of chat, out of git, and out of your shared folder.
+- Anything with motors, relays or heat gets your explicit go-ahead first.
+- Gadgets built with your token are for personal, non-commercial use — see the
+  [Gadget SDK Token Terms](https://gadgets.muse.ai/sdk-terms).
 
-## FAQ
+Tested on the workbench in its default `isolated` mode: ESP-IDF v6.0.1 installed through the proxy,
+a real board identified over USB, and the Gadget SDK firmware built for the ESP32-S3 DevKitC-1
+([`tests/smoke.py`](tests/smoke.py)).
 
-**Is this official?** No. It builds on the open-source
-[Muse Gadget SDK](https://github.com/facebookincubator/muse-gadget-sdk) and on Muse Local Gateway.
+## Credits
 
-**Do I need it to use the Gadget SDK?** No — you can flash by hand. Forge is for letting Muse do the
-build-flash-debug loop itself.
+- **[Muse Gadgets](https://github.com/facebookincubator/muse-gadget-sdk)** by Meta — the SDK, the firmware,
+  and the agent-ready `AGENTS.md` that make this possible. Forge only points Muse at it.
+- **[ESP-IDF](https://github.com/espressif/esp-idf)** and **esptool** by Espressif.
+- **[Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway)** — the workbench.
+
+Muse Gadget Forge is an **unofficial community project**, not made, endorsed, or supported by Meta.
+"Muse" is Meta's name, used here only to say what this works with.
 
 ## License
 
-[Apache-2.0](LICENSE). "Muse" is a trademark of its owner, used here only to say what this works with.
+[Apache-2.0](LICENSE)

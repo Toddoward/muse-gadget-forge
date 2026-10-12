@@ -16,7 +16,7 @@ import time
 GW = os.path.abspath(sys.argv[1])
 FILES = ["compose.yaml", "tests/compose.smoke.yaml", "compose.usb.yaml"]
 ENV = {**os.environ, "COMPOSE_FILE": "", "MUSE_SHARE": "./shared-smoke"}
-IDF = "export IDF_TOOLS_PATH=/build/.espressif; . /build/esp-idf/export.sh >/dev/null 2>&1; "
+IDF = "export IDF_PATH=/build/esp-idf IDF_TOOLS_PATH=/build/.espressif; . $IDF_PATH/export.sh >/dev/null 2>&1; "
 failed = []
 
 

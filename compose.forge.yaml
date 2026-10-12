@@ -1,7 +1,0 @@
-# muse-gadget-forge: swaps the gateway's bench image for ESP-IDF. Loaded through COMPOSE_FILE in the
-# gateway's .env (install.sh / install.ps1 add it). bench.py still comes from the gateway's folder.
-# Needs Docker Compose 2.24+ (for !reset).
-services:
-  bench:
-    image: espressif/idf:v6.0.1
-    build: !reset null

@@ -1,69 +1,59 @@
 [![English](https://img.shields.io/badge/lang-English-lightgrey?style=flat-square)](README.md)
-[![한국어](https://img.shields.io/badge/lang-%ED%95%9C%EA%B5%AD%EC%96%B4-111111?style=flat-square)](README.kr.md)
+[![한국어](https://img.shields.io/badge/lang-%ED%95%9C%EA%B5%AD%EC%96%B4-16161D?style=flat-square)](README.kr.md)
 
 # Muse Gadget Forge
 
-**Gadget은 Muse에게 귀와 입을, Local Gateway는 손과 발을 줍니다.<br>
-Forge는 작업대를 줍니다 — Muse가 다음 가젯을 직접 만드는 곳.**
+**Muse가 자기 가젯을 직접 만들게 해 주는 스킬.**
 
-[![License](https://img.shields.io/badge/license-Apache--2.0-111111?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.1.0-111111?style=flat-square)](CHANGELOG.md)
-[![Community skill](https://img.shields.io/badge/Muse-community%20skill-lightgrey?style=flat-square)](#자주-묻는-질문)
+[![License](https://img.shields.io/badge/license-Apache--2.0-16161D?style=flat-square)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.1.0-16161D?style=flat-square)](CHANGELOG.md)
+[![Unofficial](https://img.shields.io/badge/Muse-community%20skill-0069D9?style=flat-square)](#만든-것들에-대한-감사)
 
-ESP32를 컴퓨터에 꽂고 Muse에게 가젯을 부탁하세요. Muse가 펌웨어를 쓰고, ESP-IDF로 빌드하고, 책상 위 보드에
-굽고, 시리얼 로그를 읽고, 깨진 곳을 고칩니다. 사용자가 터미널을 만지지 않아도 이 과정을 반복합니다.
-그다음 Muse 앱에서 페어링하면, 보드는 Wi-Fi로 Muse와 혼자 대화합니다.
+[Muse Gadgets](https://gadgets.muse.ai)는 Muse에게 내 방에서 쓸 귀와 입을 줍니다. 화면, 마이크, 스피커, 버튼이 달린
+ESP32 하나면 됩니다. 그런데 지금까지 그 가젯을 만드는 건 늘 다른 누군가의 몫이었습니다. 펌웨어를 직접 짜서 굽거나,
+노트북의 다른 코딩 에이전트에게 맡기거나. Muse는 페어링 화면 건너편에서 기다리기만 했죠.
 
-Forge는 [**Muse Local Gateway**](https://github.com/Toddoward/muse-local-gateway)의 추가 기능입니다. 게이트웨이의
-격리된 셸을 ESP-IDF v6.0.1이 든 셸로 바꿉니다. 잠금장치도, 네트워크 모드도, 공유 폴더 하나도 그대로이고,
-USB 보드만 더해집니다.
+Forge는 그 틈을 메웁니다. 그렇다고 대단한 게 들어 있지는 않습니다. Muse에게 건네는 지침 한 장, 스킬일 뿐입니다.
+나머지는 이미 다 있으니까요.
 
-> 비공식 커뮤니티 프로젝트입니다. Muse 제작사와 관계가 없고 보증받지 않았습니다.
+- **[Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway)**가 내 컴퓨터 위에 Muse의 작업대를 놓아 줍니다.
+  USB에 꽂힌 보드 바로 옆의 격리된 셸입니다.
+- **[Muse Gadget SDK](https://github.com/facebookincubator/muse-gadget-sdk)**에는 펌웨어와 보드별 설정, 그리고 에이전트가
+  빌드할 수 있도록 쓰인 `AGENTS.md`가 있습니다.
 
-## 설치
+Forge는 Muse가 이 둘을 스스로 엮게 합니다. 작업대에 ESP-IDF를 깔고, 내 보드에 맞는 설정을 고르고, 빌드하고, 굽고,
+부팅 로그를 읽고, 깨진 곳을 고칩니다. 그리고 꼭 사람이 해야 하는 마지막 한 단계, Muse 앱에서의 페어링을 건네줍니다.
 
-1. [Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway)를 설치하면서 USB 질문에 **y**라고 답합니다.
-2. 이 저장소를 그 옆에 받고 설치 스크립트를 실행합니다(처음엔 ESP-IDF 약 5GB를 받습니다).
+## 쓰는 법
 
-```bash
-git clone https://github.com/Toddoward/muse-gadget-forge
-./muse-gadget-forge/install.sh ./muse-local-gateway          # Linux
-```
+1. [Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway)를 설치하면서 USB에 **y**라고 답합니다.
+2. 보드를 꽂고(ESP32-S3로 시작하면 좋습니다) Muse에게 말합니다.
+   > *https://github.com/Toddoward/muse-gadget-forge 에서 muse_gadget_forge 스킬 설치하고, 내 책상에 있는 보드로 가젯 하나 만들어 줘.*
+3. [SDK 토큰](https://gadgets.muse.ai)을 준비해 두세요. Muse가 물어봅니다. 굽기 전에도 확인을 구합니다.
+   첫 빌드 때는 작업대에 ESP-IDF를 내려받느라 시간이 좀 걸립니다.
 
-```powershell
-git clone https://github.com/Toddoward/muse-gadget-forge
-.\muse-gadget-forge\install.ps1 .\muse-local-gateway         # Windows
-```
-
-3. Muse에게: *"https://github.com/Toddoward/muse-gadget-forge 에서 muse_gadget_forge 스킬을 설치해 줘."*
-
-`--remove`(Windows는 `-Remove`)로 빼면 원래 셸로 돌아갑니다.
-
-## 보드
-
-| 보드 | 나타나는 이름 | 빌드 | 굽기 |
-|---|---|---|---|
-| ESP32-S3, C3, C6 (네이티브 USB) | `/dev/ttyACM0` | ✅ ESP-IDF | ✅ |
-| ESP32 DevKit (CP210x / CH340) | `/dev/ttyUSB0` | ✅ ESP-IDF | ✅ |
-| ESP8266 (NodeMCU, D1 mini) | `/dev/ttyUSB0` | ❌ ESP-IDF 미지원 | ✅ 미리 빌드된 이미지 |
-
-Linux와 Windows(usbipd-win 사용). macOS는 안 됩니다 — Docker Desktop이 USB를 넘기지 못합니다.
+게이트웨이 말고는 따로 설치할 게 없습니다. 툴체인은 Muse가 직접 준비합니다.
 
 ## Muse가 하는 일과 하지 않는 일
 
-- 굽기 전에 묻습니다 — 보드에서 돌던 것이 바뀌기 때문입니다.
-- 묻지 않고 플래시를 지우지 않습니다 — Wi-Fi 설정과 가젯 페어링이 사라지기 때문입니다.
-- Gadget SDK 토큰은 사용자가 SDK 약관을 읽은 뒤 gadgets.muse.ai에서 직접 만듭니다.
-- 페어링은 휴대폰의 Muse 앱에서 합니다. 컴퓨터는 작업대이지 중계기가 아닙니다. 페어링이 끝난 가젯은 컴퓨터가 필요 없습니다.
+- **굽기 전에 묻고**, 묻지 않고는 보드를 지우지 않습니다(지우면 Wi-Fi 설정과 페어링이 사라집니다).
+- 토큰은 대화에도, git에도, 공유 폴더에도 남기지 않습니다.
+- 모터·릴레이·발열처럼 움직이거나 뜨거워지는 것은 먼저 분명한 허락을 받습니다.
+- 내 토큰으로 만든 가젯은 개인적·비상업적 용도입니다. [Gadget SDK 토큰 약관](https://gadgets.muse.ai/sdk-terms)을 확인하세요.
 
-## 자주 묻는 질문
+작업대의 기본 모드(`isolated`)에서 검증했습니다. 프록시를 거쳐 ESP-IDF v6.0.1을 설치하고, USB로 실제 보드를 식별하고,
+ESP32-S3 DevKitC-1용 Gadget SDK 펌웨어를 빌드했습니다([`tests/smoke.py`](tests/smoke.py)).
 
-**공식 프로젝트인가요?** 아닙니다. 오픈소스 [Muse Gadget SDK](https://github.com/facebookincubator/muse-gadget-sdk)와
-Muse Local Gateway 위에 만들었습니다.
+## 만든 것들에 대한 감사
 
-**Gadget SDK를 쓰려면 꼭 필요한가요?** 아닙니다. 직접 구워도 됩니다. Forge는 빌드·굽기·디버깅 반복을 Muse가 스스로
-하게 하려는 것입니다.
+- **[Muse Gadgets](https://github.com/facebookincubator/muse-gadget-sdk)** (Meta) — SDK와 펌웨어, 그리고 이 모든 걸 가능하게 한
+  에이전트용 `AGENTS.md`. Forge는 Muse에게 그곳을 가리켜 줄 뿐입니다.
+- **[ESP-IDF](https://github.com/espressif/esp-idf)**와 **esptool** (Espressif)
+- **[Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway)** — 작업대
+
+Muse Gadget Forge는 **비공식 커뮤니티 프로젝트**이며, Meta가 만들거나 보증하거나 지원하지 않습니다.
+"Muse"는 Meta의 이름이고, 무엇과 함께 동작하는지 밝히기 위해서만 씁니다.
 
 ## 라이선스
 
-[Apache-2.0](LICENSE). "Muse"는 해당 소유자의 상표이며, 무엇과 함께 동작하는지 밝히는 용도로만 씁니다.
+[Apache-2.0](LICENSE)
