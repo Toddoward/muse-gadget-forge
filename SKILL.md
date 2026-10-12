@@ -21,7 +21,9 @@ The SDK pins **ESP-IDF v6.0.1**. Install it into `/build` so it survives restart
 
 ```sh
 git clone -q -b v6.0.1 --depth 1 --recursive --shallow-submodules https://github.com/espressif/esp-idf.git /build/esp-idf
-IDF_TOOLS_PATH=/build/.espressif /build/esp-idf/install.sh esp32s3      # add targets as needed: esp32s3,esp32c6
+export IDF_TOOLS_PATH=/build/.espressif
+/build/esp-idf/install.sh esp32s3      # add targets as needed: esp32s3,esp32c6
+python3 /build/esp-idf/tools/idf_tools.py install cmake ninja   # the workbench has no system cmake
 ```
 Run it with a timeout of 3600 and tell the user it takes a while the first time. Skip if
 `/build/esp-idf/install.sh` already exists. Start **every** later command with this (the workbench

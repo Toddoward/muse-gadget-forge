@@ -60,7 +60,8 @@ for _ in range(60):
 t0 = time.time()
 v = run("test -x /build/esp-idf/install.sh || git clone -q -b v6.0.1 --depth 1 --recursive --shallow-submodules "
         "https://github.com/espressif/esp-idf.git /build/esp-idf; "
-        "IDF_TOOLS_PATH=/build/.espressif /build/esp-idf/install.sh esp32s3 > /build/idf-install.log 2>&1; "
+        "export IDF_TOOLS_PATH=/build/.espressif; /build/esp-idf/install.sh esp32s3 > /build/idf-install.log 2>&1"
+        " && python3 /build/esp-idf/tools/idf_tools.py install cmake ninja >> /build/idf-install.log 2>&1; "
         "rc=$?; tail -3 /build/idf-install.log; exit $rc", 3600)
 check(f"ESP-IDF v6.0.1 installed through the proxy ({time.time() - t0:.0f} s)", v.get("exit_code") == 0, v)
 v = run(IDF + "idf.py --version")
