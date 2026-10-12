@@ -1,6 +1,8 @@
 [![English](https://img.shields.io/badge/lang-English-16161D?style=flat-square)](README.md)
 [![한국어](https://img.shields.io/badge/lang-%ED%95%9C%EA%B5%AD%EC%96%B4-lightgrey?style=flat-square)](README.kr.md)
 
+<img src="docs/media/logo-forge.svg" width="72" alt="Muse Gadget Forge logo">
+
 # Muse Gadget Forge
 
 **A skill that lets Muse build its own gadget.**

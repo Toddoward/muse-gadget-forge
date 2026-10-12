@@ -1,6 +1,8 @@
 [![English](https://img.shields.io/badge/lang-English-lightgrey?style=flat-square)](README.md)
 [![한국어](https://img.shields.io/badge/lang-%ED%95%9C%EA%B5%AD%EC%96%B4-16161D?style=flat-square)](README.kr.md)
 
+<img src="docs/media/logo-forge.svg" width="72" alt="Muse Gadget Forge 로고">
+
 # Muse Gadget Forge
 
 **Muse가 자기 가젯을 직접 만들게 해 주는 스킬.**
