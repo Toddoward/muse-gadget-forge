@@ -1,7 +1,7 @@
 [![English](https://img.shields.io/badge/lang-English-lightgrey?style=flat-square)](README.md)
 [![한국어](https://img.shields.io/badge/lang-%ED%95%9C%EA%B5%AD%EC%96%B4-16161D?style=flat-square)](README.kr.md)
 
-<img src="docs/media/logo-forge.svg" width="72" alt="Muse Gadget Forge 로고">
+<img src="docs/media/logo.svg" width="72" alt="Muse Gadget Forge 로고">
 
 # Muse Gadget Forge
 
@@ -52,7 +52,6 @@ ESP32-S3 DevKitC-1용 Gadget SDK 펌웨어를 빌드했습니다([`tests/smoke.p
 - **[Muse Gadgets](https://github.com/facebookincubator/muse-gadget-sdk)** (Meta) — SDK와 펌웨어, 그리고 이 모든 걸 가능하게 한
   에이전트용 `AGENTS.md`. Forge는 Muse에게 그곳을 가리켜 줄 뿐입니다.
 - **[ESP-IDF](https://github.com/espressif/esp-idf)**와 **esptool** (Espressif)
-- **[Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway)** — 작업대
 
 Muse Gadget Forge는 **비공식 커뮤니티 프로젝트**이며, Meta가 만들거나 보증하거나 지원하지 않습니다.
 "Muse"는 Meta의 이름이고, 무엇과 함께 동작하는지 밝히기 위해서만 씁니다.

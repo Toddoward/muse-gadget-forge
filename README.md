@@ -1,7 +1,7 @@
 [![English](https://img.shields.io/badge/lang-English-16161D?style=flat-square)](README.md)
 [![한국어](https://img.shields.io/badge/lang-%ED%95%9C%EA%B5%AD%EC%96%B4-lightgrey?style=flat-square)](README.kr.md)
 
-<img src="docs/media/logo-forge.svg" width="72" alt="Muse Gadget Forge logo">
+<img src="docs/media/logo.svg" width="72" alt="Muse Gadget Forge logo">
 
 # Muse Gadget Forge
 
@@ -57,7 +57,6 @@ minute per build after that.
 - **[Muse Gadgets](https://github.com/facebookincubator/muse-gadget-sdk)** by Meta — the SDK, the firmware,
   and the agent-ready `AGENTS.md` that make this possible. Forge only points Muse at it.
 - **[ESP-IDF](https://github.com/espressif/esp-idf)** and **esptool** by Espressif.
-- **[Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway)** — the workbench.
 
 Muse Gadget Forge is an **unofficial community project**, not made, endorsed, or supported by Meta.
 "Muse" is Meta's name, used here only to say what this works with.
