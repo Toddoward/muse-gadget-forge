@@ -15,7 +15,8 @@ Runs **on top of `muse_local_gateway`**: every command below goes through
 2. `gateway-exec.sh <ip>:8731 'ls /dev/ttyACM* /dev/ttyUSB* 2>/dev/null'` — no output means no board
    is visible: USB is off in the gateway, the cable is charge-only, or (Windows) the attach watcher
    has not run yet. See the gateway's `docs/usb-serial.md`.
-3. Identify the chip before building: `esptool.py --port <port> chip_id`. Native USB boards
+3. Identify the chip before building: `python -m esptool --port <port> chip-id`
+   (ESP-IDF v6 ships esptool v5: commands use hyphens — `chip-id`, `write-flash`, `erase-flash`). Native USB boards
    (S3/C3/C6) are `ttyACM*`; CP210x/CH340 bridges are `ttyUSB*`.
 
 ## Build and flash
@@ -26,7 +27,7 @@ Runs **on top of `muse_local_gateway`**: every command below goes through
   `stty -F <port> 115200 raw -echo; timeout 15 cat <port>`
   Boards with native USB reset when flashed; wait 2 s before reading.
 - ESP8266 is not supported by ESP-IDF. You can still identify it and flash a prebuilt image with
-  `esptool.py --port <port> write_flash 0x0 <file>.bin`.
+  `python -m esptool --port <port> write-flash 0x0 <file>.bin`.
 
 ## Muse Gadget SDK
 - SDK: https://github.com/facebookincubator/muse-gadget-sdk (Apache-2.0). Clone it into
@@ -41,6 +42,6 @@ Runs **on top of `muse_local_gateway`**: every command below goes through
 
 ## Rules
 - **Ask before flashing.** It replaces whatever the board was running.
-- **Never `erase_flash` without asking.** It wipes Wi-Fi credentials and gadget pairing (NVS).
+- **Never `erase-flash` without asking.** It wipes Wi-Fi credentials and gadget pairing (NVS).
 - One board per task. If several ports exist, name the one you will use and why.
 - Report: chip, port, what was built (commit or file), flash result, and the first lines of the log.
