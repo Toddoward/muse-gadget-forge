@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Skill name is now `muse-gadget-forge` (lowercase-hyphen, the Agent Skills convention).
+- The Gadget SDK token no longer goes through chat: the user drops it in `.gadget-token` in the shared
+  folder; Muse moves it to `/build` unread and appends it to the build's `sdkconfig`.
+
 ## 0.1.0 — 2026-10-12
 
 First public release.

@@ -32,9 +32,10 @@ that has to be yours, pairing it in the Muse app.
 
 1. Set up [Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway) and say **yes** to USB.
 2. Plug in your board (an ESP32-S3 is a good start) and tell Muse:
-   > *Install the muse_gadget_forge skill from https://github.com/Toddoward/muse-gadget-forge, then
+   > *Install the muse-gadget-forge skill from https://github.com/Toddoward/muse-gadget-forge, then
    > build me a gadget for the board on my desk.*
-3. Have your [SDK token](https://gadgets.muse.ai) ready — Muse will ask for it — and confirm when it
+3. When Muse asks, put your [SDK token](https://gadgets.muse.ai) in a file named `.gadget-token` in your shared folder —
+   Muse moves it out of the folder without reading it — and confirm when it
    asks to flash. The first build downloads ESP-IDF onto the workbench, so give it some time.
 
 Nothing to install on your side beyond the gateway: Muse sets up its own toolchain.
@@ -42,7 +43,7 @@ Nothing to install on your side beyond the gateway: Muse sets up its own toolcha
 ## What Muse will and won't do
 
 - It **asks before flashing**, and never erases a board without asking (that wipes Wi-Fi and pairing).
-- Your token stays out of chat, out of git, and out of your shared folder.
+- Your token never goes through chat: you drop it in a file, Muse moves it off the shared folder unread.
 - Anything with motors, relays or heat gets your explicit go-ahead first.
 - Gadgets built with your token are for personal, non-commercial use — see the
   [Gadget SDK Token Terms](https://gadgets.muse.ai/sdk-terms).

@@ -30,8 +30,9 @@ Forge는 Muse가 이 둘을 스스로 엮게 합니다. 작업대에 ESP-IDF를 
 
 1. [Muse Local Gateway](https://github.com/Toddoward/muse-local-gateway)를 설치하면서 USB에 **y**라고 답합니다.
 2. 보드를 꽂고(ESP32-S3로 시작하면 좋습니다) Muse에게 말합니다.
-   > *https://github.com/Toddoward/muse-gadget-forge 에서 muse_gadget_forge 스킬 설치하고, 내 책상에 있는 보드로 가젯 하나 만들어 줘.*
-3. [SDK 토큰](https://gadgets.muse.ai)을 준비해 두세요. Muse가 물어봅니다. 굽기 전에도 확인을 구합니다.
+   > *https://github.com/Toddoward/muse-gadget-forge 에서 muse-gadget-forge 스킬 설치하고, 내 책상에 있는 보드로 가젯 하나 만들어 줘.*
+3. Muse가 요청하면 [SDK 토큰](https://gadgets.muse.ai)을 공유 폴더의 `.gadget-token` 파일에 넣어 주세요. Muse는 열어 보지 않고
+   공유 폴더 밖으로 옮겨 씁니다. 굽기 전에도 확인을 구합니다.
    첫 빌드 때는 작업대에 ESP-IDF를 내려받느라 시간이 좀 걸립니다.
 
 게이트웨이 말고는 따로 설치할 게 없습니다. 툴체인은 Muse가 직접 준비합니다.
@@ -39,7 +40,7 @@ Forge는 Muse가 이 둘을 스스로 엮게 합니다. 작업대에 ESP-IDF를 
 ## Muse가 하는 일과 하지 않는 일
 
 - **굽기 전에 묻고**, 묻지 않고는 보드를 지우지 않습니다(지우면 Wi-Fi 설정과 페어링이 사라집니다).
-- 토큰은 대화에도, git에도, 공유 폴더에도 남기지 않습니다.
+- 토큰은 대화로 오가지 않습니다. 파일로 넣으면 Muse가 열어 보지 않고 공유 폴더 밖으로 옮깁니다.
 - 모터·릴레이·발열처럼 움직이거나 뜨거워지는 것은 먼저 분명한 허락을 받습니다.
 - 내 토큰으로 만든 가젯은 개인적·비상업적 용도입니다. [Gadget SDK 토큰 약관](https://gadgets.muse.ai/sdk-terms)을 확인하세요.
 

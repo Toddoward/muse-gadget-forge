@@ -1,13 +1,13 @@
 ---
-name: "muse_gadget_forge"
-description: "Build your own Muse gadget — your ears and voice in the user's room — on the user's own computer: set up ESP-IDF on the muse_local_gateway workbench, build the Muse Gadget SDK firmware, flash the ESP32 board on their USB port, read its log, and walk the user through pairing. Use when the user wants a new or updated Muse gadget, or one that misbehaves."
+name: muse-gadget-forge
+description: "Build your own Muse gadget — your ears and voice in the user's room — on the user's own computer: set up ESP-IDF on the muse-local-gateway workbench, build the Muse Gadget SDK firmware, flash the ESP32 board on their USB port, read its log, and walk the user through pairing. Use when the user wants a new or updated Muse gadget, or one that misbehaves."
 ---
 
 # Muse Gadget Forge
 
 Community skill, not an official Muse feature. Source: https://github.com/Toddoward/muse-gadget-forge
 
-Everything here runs on the user's workbench through the **muse_local_gateway** skill:
+Everything here runs on the user's workbench through the **muse-local-gateway** skill:
 `bin/gateway-exec.sh <ip>:8731 '<cmd>' [cwd] [timeout]`. The workbench is a plain Linux shell with
 internet through a proxy, the user's shared folder at `/work`, a fast persistent volume at `/build`,
 and (if the user enabled it) their USB serial boards under `/dev`.
@@ -46,10 +46,17 @@ Build under `/build` (fast); copy finished images to `/work/gadgets/<name>/` so 
 
 ## 4. Token
 Every gadget needs the user's SDK token (`mgst_…`, from gadgets.muse.ai → Account → SDK tokens).
-Ask the user for it; put it in the build directory's `sdkconfig` as `CONFIG_GADGET_SDK_TOKEN`.
-Never print it in full, never commit it, never leave it in `/work`. The token is personal and for
-non-commercial use; a gadget built with it may be given to others but not sold or presented as
-made or endorsed by Meta (Gadget SDK Token Terms).
+**Never ask for it in chat.** Ask the user to put one line, `CONFIG_GADGET_SDK_TOKEN="mgst_…"`, into a file
+named `.gadget-token` in their shared folder (it appears as `/work/.gadget-token`). Then, without reading it:
+
+```sh
+mv /work/.gadget-token /build/.gadget-token && chmod 600 /build/.gadget-token   # out of the shared folder
+# after the build directory's sdkconfig exists (first configure/build), before the real build:
+sed -i '/^CONFIG_GADGET_SDK_TOKEN=/d' <build-dir>/sdkconfig && cat /build/.gadget-token >> <build-dir>/sdkconfig
+```
+Never print it (the `cat … >>` above only appends it to the file), never commit it, never copy it back into `/work`. The token is personal
+and for non-commercial use; a gadget built with it may be given to others but not sold or presented
+as made or endorsed by Meta (Gadget SDK Token Terms).
 
 ## 5. Build, flash, read
 - Build with the SDK's helper for that board (e.g. `tools/board.sh espressif-s3-devkitc-1 build`)
